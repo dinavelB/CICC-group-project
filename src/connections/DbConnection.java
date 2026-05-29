@@ -23,12 +23,22 @@ public class DbConnection {
     }
 
     // throw an exception if the file is not found
-    public static void main(String[] args) throws Exception{
+    public static Connection StartConnection() throws Exception {
+        Connection connection = null;
 
-        Connection connection;
+        try {
 
-        Class.forName(driver);
-        connection = DriverManager.getConnection(url, username, "");
+            Class.forName(driver);
+            connection = DriverManager.getConnection(url, username, "");
+
+            System.out.println("Database connected successfully");
+
+        } catch (Exception e) {
+            System.out.println("Database not connected");
+            e.printStackTrace();
+        }
+
+        return connection;
     }
 
 
