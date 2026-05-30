@@ -2,6 +2,7 @@ package connections;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.*;
 import java.io.*;
 
@@ -11,7 +12,7 @@ public class DbConnection {
     private  static String username;
     private static String driver;
 
-    DbConnection() throws Exception{
+    public DbConnection() throws Exception{
         FileReader readFile =  new FileReader("src/connections/database.properties");
         Properties properties = new Properties(); // properties of the file
 
@@ -24,7 +25,7 @@ public class DbConnection {
     }
 
     // throw an exception if the file is not found
-    public static Connection StartConnection() throws Exception {
+    public static Connection StartConnection() throws SQLException {
         Connection connection = null;
 
         try {
@@ -42,6 +43,7 @@ public class DbConnection {
 
         return connection;
     }
+
 
 
 }
