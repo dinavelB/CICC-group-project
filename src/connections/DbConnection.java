@@ -11,6 +11,7 @@ public class DbConnection {
     private static String url;
     private  static String username;
     private static String driver;
+    private static Connection connection = null;
 
     public DbConnection() throws Exception{
         FileReader readFile =  new FileReader("src/connections/database.properties");
@@ -26,7 +27,7 @@ public class DbConnection {
 
     // throw an exception if the file is not found
     public static Connection StartConnection() throws SQLException {
-        Connection connection = null;
+        if(connection != null) return connection;
 
         try {
             // re-initialize

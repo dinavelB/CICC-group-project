@@ -1,5 +1,5 @@
 package util;
-
+import customexceptions.AccountNotFound;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class JBcrypt {
@@ -10,9 +10,27 @@ public class JBcrypt {
         return hashedPassword;
     }
 
-    public boolean comparePassword (String userInputPass, String dbPassword){
+    public boolean comparePassword (String userInputPass, String dbPassword) throws Exception{
         boolean isCorrect = bcrypt.checkpw(userInputPass, dbPassword);
         return isCorrect;
     }
 
+    public String hashMyPassword(String samplePassword){
+        String hashedPassword =  bcrypt.hashpw(samplePassword, BCrypt.gensalt());
+        return  hashedPassword;
+    }
+
+}
+
+class Run {
+
+    /*
+    public static  void main(String[] args){
+        JBcrypt test =  new JBcrypt();
+        String password = test.hashMyPassword("020606");
+        System.out.println("hashed password is: " + password);
+
+    }
+
+     */
 }

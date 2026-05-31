@@ -6,10 +6,11 @@ import util.JBcrypt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import customexceptions.AccountNotFound;
 
-public class Account implements AccountDao{
+public class AccountService implements AccountDao{
 
-    public AccountModel loginAccount(int accountNum, String pin) throws Exception {
+    public AccountModel loginAccount(String accountNum, String pin) throws Exception {
         JBcrypt bcrypt = new JBcrypt();
         AccountModel account =   new AccountModel();
         Connection connection = DbConnection.StartConnection();
@@ -18,7 +19,7 @@ public class Account implements AccountDao{
 //    create a pStatement with the connection method from dbConnection
         PreparedStatement p = connection.prepareStatement(foundAccount);
 //        always setInt since each param or ? is counted default 1 onwards
-        p.setInt(1, accountNum);
+        p.setString(1, accountNum);
 //        results of the query using the prepared statement
         ResultSet resultSet = p.executeQuery();
 
@@ -30,10 +31,11 @@ public class Account implements AccountDao{
            account.setDailyDeposit(resultSet.getInt("daily_deposit"));
            account.setIsActive(resultSet.getBoolean("is_active"));
            account.setDailyWithdrawn(resultSet.getInt("daily_withdrawn"));
+        } else {
+            throw new AccountNotFound("Account not found");
         }
 
-        String hashedpassword = bcrypt.hashPassword(pin);
-        boolean isSamePass = bcrypt.comparePassword(hashedpassword, account.pin);
+        boolean isSamePass = bcrypt.comparePassword(pin, account.pin);
 
         if(!isSamePass){
             throw new Exception("Incorrect Password");
