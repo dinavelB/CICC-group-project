@@ -1,5 +1,4 @@
 package util;
-import customexceptions.AccountNotFound;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class JBcrypt {

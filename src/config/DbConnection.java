@@ -1,4 +1,4 @@
-package connections;
+package config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ public class DbConnection {
     private static Connection connection = null;
 
     public DbConnection() throws Exception{
-        FileReader readFile =  new FileReader("src/connections/database.properties");
+        FileReader readFile =  new FileReader("src/config/database.properties");
         Properties properties = new Properties(); // properties of the file
 
         properties.load(readFile); // load the properties

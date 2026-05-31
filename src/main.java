@@ -1,4 +1,4 @@
-import connections.DbConnection;
+import config.DbConnection;
 import menu.Menu;
 
 class Main {

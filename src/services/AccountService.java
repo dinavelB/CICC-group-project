@@ -1,12 +1,12 @@
 package services;
 import dao.AccountDao;
-import connections.DbConnection;
+import config.DbConnection;
 import model.AccountModel;
 import util.JBcrypt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import customexceptions.AccountNotFound;
+import exceptions.AccountNotFound;
 
 public class AccountService implements AccountDao{
 
