@@ -2,13 +2,13 @@ package model;
 
 public class AccountModel
 {
-    public String full_name;
-    public String account_number;
-    public int balance;
-    public double daily_withdrawn;
-    public double daily_deposit;
-    public boolean is_active;
-    public String pin;
+    private String full_name;
+    private String account_number;
+    private int balance;
+    private double daily_withdrawn;
+    private double daily_deposit;
+    private boolean is_active;
+    private String pin;
 
     public void setFName(String full_name){
         this.full_name = full_name;
@@ -37,4 +37,13 @@ public class AccountModel
     public void setIsActive(boolean is_active){
         this.is_active = is_active;
     }
+
+    public String getAccountNumber () {
+        return this.account_number;
+    }
+
+    public String getAccountPin () {
+    return this.pin;
+}
+
 }
