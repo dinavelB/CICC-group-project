@@ -14,8 +14,16 @@ public class Menu {
                 accountNumber = loginMenu(scanner);
             } while (accountNumber == null);
 
-            int choice = printMenu();
-            Processes.handleMenuChoice(choice, accountNumber);
+            while (true) {
+                int choice = printMenu();
+
+                if (choice == 6) {
+                    System.out.println("Thank you for using our ATM. Goodbye!");
+                    break;
+                }
+
+                Processes.handleMenuChoice(choice, accountNumber);
+            }
 
         }
 
@@ -46,8 +54,7 @@ public class Menu {
         System.out.println("  [3] Withdraw Money");
         System.out.println("  [4] Transfer Money");
         System.out.println("  [5] Change PIN");
-        System.out.println("  [6] Transaction History");
-        System.out.println("  [7] Exit");
+        System.out.println("  [6] Exit");
         System.out.print("Enter your choice: ");
 
         int choice = input.nextInt();
